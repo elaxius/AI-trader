@@ -65,14 +65,16 @@ if __name__ == '__main__':
     # Run backtest
     results = cerebro.run(maxcpus=1)  # Run on a single CPU
 
-    par_list = [[x[0].params.cutoff,
-                 x[0].analyzers.returns.get_analysis()['rnorm100'],
-                 x[0].analyzers.drawdown.get_analysis()['max']['drawdown'],
-                 x[0].analyzers.sharpe.get_analysis()['sharperatio']
-                 ] for x in results]
+    par_list = [[
+                x[0].params.n_period,
+                x[0].params.threshold,
+                x[0].params.cutoff,
+                x[0].analyzers.returns.get_analysis()['rnorm100'],
+                x[0].analyzers.drawdown.get_analysis()['max']['drawdown'],
+                x[0].analyzers.sharpe.get_analysis()['sharperatio']] for x in results]
 
     # Find the best strategy
 
-    par_df = pd.DataFrame(par_list, columns=['cutoff', 'return','drawdown','sharpe'])
+    par_df = pd.DataFrame(par_list, columns=['n_period','threshold', 'cutoff', 'return','drawdown','sharpe'])
     print(par_df)
     par_df.to_csv('output.csv')
