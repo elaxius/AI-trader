@@ -4,3 +4,7 @@
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/vcs.xml
 /.idea/AI-trader.iml
+/catboost_info/
+/Data/AUDNZD/
+model.joblib
+model_long.joblib
